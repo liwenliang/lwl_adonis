@@ -19,22 +19,18 @@ Route.on('/').render('welcome')
 
 Route.get('/posts', 'PostController.index')
 
-Route.post('/posts', () => 'Post has been created.')
+Route.post('/posts', 'PostController.store')
 
-Route.get('/posts/:id', ({params}) => {
-  return `You're watching post ${ params.id }`
-})
+Route.get('/posts/create', 'PostController.create')
 
-Route.put('/posts/:id', ({params})=>{
-  return `Post ${params.id} has been updated by put.`
-})
+Route.get('/posts/:id', 'PostController.show')
 
-Route.patch('/posts/:id', ({params}) => {
-  return `Post ${params.id} has been updated by patch.`
-})
+Route.put('/posts/:id', 'PostController.update')
 
-Route.delete('/posts/:id', ({params})=>{
-  return `Post ${params.id} has been removed by delete.`
-})
+Route.patch('/posts/:id', 'PostController.update')
+
+Route.delete('/posts/:id', 'PostController.destroy')
+
+Route.get('/posts/:id/edit', 'PostController.edit')
 
 
