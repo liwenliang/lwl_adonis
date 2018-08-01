@@ -24,3 +24,17 @@ Route.post('/posts', () => 'Post has been created.')
 Route.get('/posts/:id', ({params}) => {
   return `You're watching post ${ params.id }`
 })
+
+Route.put('/posts/:id', ({params})=>{
+  return `Post ${params.id} has been updated by put.`
+})
+
+Route.patch('/posts/:id', ({params}) => {
+  return `Post ${params.id} has been updated by patch.`
+})
+
+Route.delete('/posts/:id', ({params})=>{
+  return `Post ${params.id} has been removed by delete.`
+})
+
+
