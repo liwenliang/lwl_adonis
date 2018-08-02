@@ -20,7 +20,10 @@ Route.on('/').render('welcome')
 Route
   .resource('/posts', 'PostController')
   .except(['index'])
-  // .only(['index', 'show'])
-  // .apiOnly()
+// .only(['index', 'show'])
+// .apiOnly()
 
-
+// 这种写法是很优雅的，如果自己模板能够输出链接，最好不过用这种形式了
+Route
+  .get('/users', () => `List of Users.`)
+  .as('users.index')
