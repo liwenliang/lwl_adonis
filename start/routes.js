@@ -24,6 +24,17 @@ Route
 // .apiOnly()
 
 // 这种写法是很优雅的，如果自己模板能够输出链接，最好不过用这种形式了
-Route
-  .get('/users', () => `List of Users.`)
-  .as('users.index')
+Route.get('/users', ({request}) => {
+  switch (request.format()) {
+    case 'json':
+      return [
+        {name: 'zhangsan'},
+        {name: 'lisi'}
+      ]
+    default:
+      return `
+        - zhangsan
+        - lisi
+      `
+  }
+}).formats(['json', 'html'], true)
