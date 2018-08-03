@@ -23,7 +23,6 @@ Route
 // .only(['index', 'show'])
 // .apiOnly()
 
-// 这种写法是很优雅的，如果自己模板能够输出链接，最好不过用这种形式了
 Route.get('/users', ({request}) => {
   switch (request.format()) {
     case 'json':
@@ -38,3 +37,10 @@ Route.get('/users', ({request}) => {
       `
   }
 }).formats(['json', 'html'], true)
+
+Route
+  .group(() => {
+    Route.get('users', () => 'Manage users')
+    Route.get('posts', () => 'Manage posts')
+  })
+  .prefix('admin')
