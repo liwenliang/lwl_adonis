@@ -1,0 +1,14 @@
+[
+  {
+    "name": "lwl_adonis",
+    "script": "npm",
+    "args": "start",
+    "merge_logs" : true,
+    "error_file": "/yixia/logs/node/err_lwl_adonis.log",
+    "out_file": "/yixia/logs/node/out_lwl_adonis.log",
+    "pid_file": "/yixia/logs/node/pc_lwl_adonis.pid",
+    "log_date_format": "YYYY-MM-DD HH:mm",
+    "max_memory_restart": "500M",
+    "instances": 4
+  }
+]
