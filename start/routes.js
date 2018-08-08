@@ -19,3 +19,9 @@ Route.on('/').render('welcome')
 
 // 解构context对象的request对象
 Route.get('/posts', ({request}) => request.get())
+
+// Route.post('/posts', ({request}) => request.post())
+// Route.post('/posts', ({request}) => request.all())
+// Route.post('/posts', ({request}) => request.only('age'))
+// Route.post('/posts', ({request}) => request.except('age'))
+Route.post('/posts', ({request}) => request.input('status', 'reading'))
