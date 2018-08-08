@@ -18,6 +18,4 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 // 解构context对象的request对象
-Route.get('/posts', ({request}) => {
-  return `${JSON.stringify(request.get(), true, '    ')}`
-})
+Route.get('/posts', ({request}) => request.get())
