@@ -17,9 +17,15 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('/posts', ({ request, response }) => {
-  response.cookie('theme', 'dark')
-  response.clearCookie('theme')
-  // return request.cookies()
-  return request.cookie('theme', 'light')
+const delay = (data, time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data)
+    }, time)
+  })
+}
+
+Route.get('/posts', async ({response}) => {
+  const data = await delay('List of posts.', 3000)
+  return data
 })
