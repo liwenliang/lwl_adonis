@@ -17,8 +17,9 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-Route.get('/posts', ({response}) => {
-  // response.header('Content-type', 'text/plain')
-  response.type('text/plain')
-  return `<h1>List of posts</h1>`
+Route.get('/posts', ({ request, response }) => {
+  response.cookie('theme', 'dark')
+  response.clearCookie('theme')
+  // return request.cookies()
+  return request.cookie('theme', 'light')
 })
