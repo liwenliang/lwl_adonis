@@ -17,15 +17,21 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-const delay = (data, time) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(data)
-    }, time)
-  })
-}
+// Route.get('/posts', ({response}) => {
+//   return `List of posts`
+// })
 
-Route.get('/posts', async ({response}) => {
-  const data = await delay('List of posts.', 3000)
-  return data
+Route.get('/list-of-posts', ({response}) => {
+  // response.redirect('/posts')          // 重定向地址
+  // response.redirect('/posts', true)    // 重定向带着查询参数
+  // response.redirect('/posts', true, 301)  // 重定向带着查询参数 code码是301
+  response.route('list-of-posts')
 })
+
+Route.get('/list-of-food-posts', ({response}) => {
+  response.route('list-of-posts', {category: 'food'})
+})
+
+Route.get('/posts/:category?', ({params}) => {
+  return `List of ${params.category || 'default'} posts `
+}).as('list-of-posts')
