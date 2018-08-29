@@ -1,0 +1,9 @@
+@each(entity in entities)
+  <div>
+    {{entity.title}} : {{entity.content}}
+  </div>
+@endeach
+
+@yield($slot.notes)
+  <small>this is notes</small>
+@endyield

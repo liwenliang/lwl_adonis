@@ -1,0 +1,19 @@
+@layout('layouts.main')
+
+@section('header')
+  <h1>this is header</h1>
+@endsection
+
+@section('content')
+  @super
+  <p>this is content</p>
+  @component('components.list', {entities})
+    @slot('notes')
+      <small>eat some food & vagetables is good for you health;</small>
+    @endslot
+  @endcomponent
+@endsection
+
+@section('footer')
+<i>this is footer</i>
+@endsection

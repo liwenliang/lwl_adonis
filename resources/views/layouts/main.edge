@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>{{pageTitle || main}}</title>
+</head>
+<body>
+  <h2>{{request.originalUrl()}} {{request.method()}} {{request.protocol()}}</h2>
+  <div class="container">
+    <div class="header">
+      @section('header')
+        <small>__header__</small>
+      @endsection
+    </div>
+    <div class="content">
+      @section('content')
+      <small>__content__</small>
+      @endsection
+    </div>
+    <div class="footer">
+      @section('footer')
+      <small>__footer__</small>
+      @endsection
+    </div>
+  </div>
+  @include('partials.footer')
+</body>
+</html>
