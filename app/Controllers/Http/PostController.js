@@ -1,4 +1,5 @@
 'use strict'
+const Database = use('Database')
 
 /**
  * Resourceful controller for interacting with posts
@@ -24,6 +25,9 @@ class PostController {
    * POST posts
    */
   async store ({ request, response }) {
+    const newPost = request.only(['title', 'content'])
+    const postID = await Database.insert(newPost).into('posts')
+    response.redirect(`/posts/${ postID[0] }`)
   }
 
   /**
@@ -31,6 +35,14 @@ class PostController {
    * GET posts/:id
    */
   async show ({ params, request, response, view }) {
+    const post = await Database
+      .from('posts')
+      .where('id', params.id)
+      .first()
+    console.log('----------------')
+    console.log(post)
+    console.log('----------------')
+    return view.render('post.show', { post })
   }
 
   /**
