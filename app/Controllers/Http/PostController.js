@@ -16,6 +16,7 @@ class PostController {
    * GET posts/create
    */
   async create ({ request, response, view }) {
+    return view.render('post.create')
   }
 
   /**

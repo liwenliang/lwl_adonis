@@ -1,0 +1,28 @@
+@layout('layouts.main')
+@section('content')
+<div class="container">
+  <h3 class="mt-5 mb-4">Add New Post</h3>
+  <form action="/posts" method="POST">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+              id="title"
+              type="text"
+              class="form-control"
+              name="title"
+              placeholder="Enter title here">
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea
+              name="content"
+              id="content"
+              class="form-control"
+              cols="30"
+              rows="10"></textarea>
+    </div>
+    {{ csrfField() }}
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>
+@endsection
