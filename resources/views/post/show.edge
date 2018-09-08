@@ -9,7 +9,11 @@
 </div>
 <ul class="nav justify-content-end fixed-bottom pb-4">
   <li class="nav-item">
-    <button class="nav-link btn btn-link">
+    <button
+            id="delete"
+            data-id="{{ post.id }}"
+            data-csrf="{{ csrfToken }}"
+            class="nav-link btn btn-link">
       Delete
     </button>
   </li>
