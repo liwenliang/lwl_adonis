@@ -39,9 +39,6 @@ class PostController {
       .from('posts')
       .where('id', params.id)
       .first()
-    console.log('----------------')
-    console.log(post)
-    console.log('----------------')
     return view.render('post.show', { post })
   }
 
@@ -50,6 +47,8 @@ class PostController {
    * GET posts/:id/edit
    */
   async edit ({ params, request, response, view }) {
+    const post = await Database.from('posts').where('id', params.id).first()
+    return view.render('post.edit', { post } )
   }
 
   /**
@@ -57,6 +56,11 @@ class PostController {
    * PUT or PATCH posts/:id
    */
   async update ({ params, request, response }) {
+    const updatedPost = request.only(['title', 'content'])
+    await Database
+      .table('posts')
+      .where('id', params.id)
+      .update(updatedPost)
   }
 
   /**
