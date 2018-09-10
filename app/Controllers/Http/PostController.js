@@ -52,8 +52,10 @@ class PostController {
    * GET posts/:id/edit
    */
   async edit ({ params, request, response, view }) {
-    const post = await Database.from('posts').where('id', params.id).first()
+    // const post = await Database.from('posts').where('id', params.id).first()
+    const post = await Post.findOrFail(params.id)
     return view.render('post.edit', { post } )
+
   }
 
   /**
@@ -62,10 +64,13 @@ class PostController {
    */
   async update ({ params, request, response }) {
     const updatedPost = request.only(['title', 'content'])
-    await Database
-      .table('posts')
-      .where('id', params.id)
-      .update(updatedPost)
+    // await Database
+    //   .table('posts')
+    //   .where('id', params.id)
+    //   .update(updatedPost)
+    const post = await Post.findOrFail(params.id)
+    post.merge(updatedPost)
+    post.save()
   }
 
   /**
