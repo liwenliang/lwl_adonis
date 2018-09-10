@@ -29,8 +29,9 @@ class PostController {
    */
   async store ({ request, response }) {
     const newPost = request.only(['title', 'content'])
-    const postID = await Database.insert(newPost).into('posts')
-    response.redirect(`/posts/${ postID[0] }`)
+    // const postID = await Database.insert(newPost).into('posts')
+    const post = await Post.create(newPost)
+    response.redirect(`/posts/${ post.id }`)
   }
 
   /**
