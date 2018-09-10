@@ -43,7 +43,7 @@ class PostController {
     //   .from('posts')
     //   .where('id', params.id)
     //   .first()
-    const post = await Post.find(params.id)
+    const post = await Post.findOrFail(params.id)
     return view.render('post.show', { post })
   }
 
@@ -55,7 +55,6 @@ class PostController {
     // const post = await Database.from('posts').where('id', params.id).first()
     const post = await Post.findOrFail(params.id)
     return view.render('post.edit', { post } )
-
   }
 
   /**
@@ -78,7 +77,9 @@ class PostController {
    * DELETE posts/:id
    */
   async destroy ({ params, request, response }) {
-    await Database.table('posts').where('id', params.id).delete()
+    // await Database.table('posts').where('id', params.id).delete()
+    const post = await Post.find(params.id)
+    post.delete()
 
     return 'success'
   }
